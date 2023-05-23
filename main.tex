@@ -1,0 +1,177 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[a4paper, total={165mm, 226mm}]{geometry}
+
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\usepackage{parskip}
+\usepackage{fancyhdr}
+
+\usepackage{mhchem} % https://docs.moodle.org/310/en/Chemistry_notation_using_mhchem
+
+\title{\LaTeX{} Tutoring session}
+\author{Author: Luciano Baldassi}
+\date{April 2021}
+
+
+
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+
+N.B. Check the source code as well as the PDF for examples and comments.
+\section{Introduction}
+\textbf{\textit{Welcome} to \LaTeX ! Let's get started !}
+
+
+The \texttt{$\backslash$section$\{sectionName\}$}, \texttt{$\backslash$subsection$\{subsectionName\}$}, and \texttt{$\backslash$subsubsection$\{subsubsectionName\}$} allows to define section, subsection and subsubsection.
+
+
+Comments are delimited by \%. Anything on the line after the \% symbol will not be compiled on the pdf.
+
+Text can be break off on multiple line when writing in the .tex file. To break off text into different paragraph, just leave a blank line between the two block of text.
+
+
+N.B. The symbols \&, \% or $\backslash$ have special uses in \LaTeX{} code. To write them, precede them with a backslash
+
+
+\subsection{Commands and environments}
+Commands are preceded by a backslash: $\backslash$
+
+e.g. To write: \LaTeX write: % \texttt{
+$\backslash$\texttt{LaTeX}
+%}
+
+Environment are delimited by \texttt{$\backslash$begin$\{environmentName\}$} and \texttt{$\backslash$end$\{environmentName\}$}
+
+Lists, equations, table or figures are environments.
+
+\section{Equations}
+
+The equation environment looks like:
+\begin{equation}
+    \left( \frac{-\hbar}{2m} \frac{d^2}{dx^2} + V(x) \right) \cdot \psi(x) = E \cdot \psi(x)
+    \label{eq:Schrodinger}
+\end{equation}
+
+To use MathMode, place your code into \$ ... \$ as such: $P=\frac{nRT}{V}$
+
+\subsection{Chemical equations}
+
+Using the package \texttt{mhchem} allows for easy formatting of chemical compounds and reactions using \texttt{$\backslash$ce\{...\}}
+
+% $\backslash$ce\{...\}
+\texttt{mhchem} works in equations, as well as both inside and outside Math Mode.
+
+Example:
+The following reaction shows the net reaction of the combustion of 1 glucose (\ce{C6H12O6}) into 6 \ce{CO2} and 6 \ce{H2O}:
+\begin{equation}
+    \ce{C6H12O6 + 6O2 -> 6CO2 + 6H2O}.
+\end{equation}
+
+Other reaction and arrows can be written that way, such as: 
+$$\ce{H2(g) + I2(g) <=>[{k_1}][{k_2}] 2HI(g)}.$$
+Refer to the documentation for the specifics
+: \url{https://ftp.snt.utwente.nl/pub/software/tex/macros/latex/contrib/mhchem/mhchem.pdf}.
+
+\section{In-document References}
+To references Equations, Figures or Tables, place a \texttt{$\backslash$label$\{labelName\}$}
+into your Equations, Figures or Tables and reference it using  \texttt{$\backslash$ref$\{labelName\}$}.
+
+N.B. you need the package \texttt{hyperref}
+
+\underline{Example:}
+
+Eq.~\ref{eq:Schrodinger} display a well known equation (TISE).
+
+Figure~\ref{fig:image1} shows an hilarious figure!
+
+Table~\ref{tab:table1} shows an amazing table!
+
+
+
+
+\section{Lists}
+
+The \texttt{enumerate} environment create a numbered list:
+\begin{enumerate}
+    \item Element 1  
+    \item Element 2
+    \item Element 3
+    \begin{itemize}
+        \item Element 3.1
+    \end{itemize}
+\end{enumerate}
+
+The \texttt{itemize} environment create a unnumbered list:
+\begin{itemize}
+    \item Element 1  
+    \item Element 2
+    \item Element 3
+    \begin{itemize}
+        \item Element 3.1
+    \end{itemize}
+\end{itemize}
+
+
+
+
+\section{Floats}
+
+\subsection{Figures}
+To make figures, use the \texttt{figure} environment.
+
+N.B. require the \texttt{graphicx} package.
+
+\begin{figure}[ht] % the [ht] tells LaTeX to place the figure here (h) or on top of the page (t) if there is no space on the page.
+    \centering
+    \includegraphics[width=0.4\linewidth]{image1.jpg}
+    % \includegraphics[width = 0.6\textwidth]{image1.jpg}
+    \caption{This is an hilarious figure}
+    \label{fig:image1}
+\end{figure}
+
+
+\subsection{Tables}
+To make tables, use the \texttt{table} environment
+
+\begin{table}[ht] 
+    \centering
+    \begin{tabular}{|l|c|c|r|} 
+    \hline
+        Column 1   & Column 2 & Column 3 & Column 4 \\ \hline
+        Count:     &    22    &   35   &    43      \\ \hline
+        Frequency: &  0.22\%  & 0.35\% &  0.43\%    \\ \hline
+    \end{tabular}
+    \caption{Such an amazing table !!}
+    \label{tab:table1}
+\end{table}
+
+
+\section{Citations}
+This document is an example of BibTeX using in bibliography management.
+ To cite something, just use \texttt{$\backslash$cite$\{labelName\}$} as such \cite{DuBoff1967}.
+Note that the reference are done automatically from the biblist.bib file in the overleaf project (Check the last lines of the source code on how to make the bibliography).
+
+\section{Need anything}
+There're a lot of templates on Overleaf. You don't need to start from scratch !
+
+
+\textbf{In trouble ? Or want to do something more than is in this tutorial?}
+\underline{Google it !} \LaTeX is a powerful tool; hopefully, there's a lot of resources on the internet.
+
+\nocite{*}                  % This line just tell to print the whole content of the bib file. Comment to only display the references cited in text
+\bibliographystyle{acm}
+% \bibliographystyle{apalike} % This line define the citation style
+\bibliography{biblist.bib}  % This line refers to the bib file in the project.
+
+
+
+\end{document}
